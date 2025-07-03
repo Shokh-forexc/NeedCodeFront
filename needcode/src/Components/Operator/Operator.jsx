@@ -3,8 +3,13 @@ import React from 'react';
 
 const Operator = () => {
     return (
-        <div>
-
+        <div style={{
+            fontSize:'50px',
+            color: 'green',
+            textAlign:'center',
+            display:'flex',
+            justifyContent:'center'}}>
+            Operator
         </div>
     );
 };
