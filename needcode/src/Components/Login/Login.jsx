@@ -1,15 +1,13 @@
 import './Login.css';
 import { useState } from "react";
 import Swal from "sweetalert2";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
     const [isActive, setIsActive] = useState(true);
-
     const [loginName, setLoginName] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
     const [loginError, setLoginError] = useState("");
-
     const [regUsername, setRegUsername] = useState("");
     const [regEmail, setRegEmail] = useState("");
     const [regPassword, setRegPassword] = useState("");
@@ -21,8 +19,62 @@ export const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault();
 
-        const savedUser = JSON.parse(localStorage.getItem("user"));
+        if (loginName === "admin" && loginPassword === "1234") {
+            Swal.fire({
+                title: "Admin sifatida kirdingiz!",
+                icon: "success",
+                timer: 1000,
+                showConfirmButton: false,
+            });
+            setTimeout(() => navigate("/admin"), 1000);
+            return;
+        }
 
+        if (loginName === "developer" && loginPassword === "1234") {
+            Swal.fire({
+                title: 'Developer sahifasiga xush kelibsiz!',
+                icon: "success",
+                timer: 1000,
+                showConfirmButton: false,
+            });
+            setTimeout(() => navigate("/developer"), 1000);
+            return;
+        }
+
+        if (loginName === "operator" && loginPassword === "1234") {
+            Swal.fire({
+                title: 'Operator sahifasiga xush kelibsiz!',
+                icon: "success",
+                timer: 1000,
+                showConfirmButton: false,
+            });
+            setTimeout(() => navigate("/operator"), 1000);
+            return;
+        }
+
+        if (loginName === "director" && loginPassword === "1234") {
+            Swal.fire({
+                title: 'Director sahifasiga xush kelibsiz!',
+                icon: "success",
+                timer: 1000,
+                showConfirmButton: false,
+            });
+            setTimeout(() => navigate("/director"), 1000);
+            return;
+        }
+
+        if (loginName === "manager" && loginPassword === "1234") {
+            Swal.fire({
+                title: 'Manager sahifasiga xush kelibsiz!',
+                icon: "success",
+                timer: 1000,
+                showConfirmButton: false,
+            });
+            setTimeout(() => navigate("/manager"), 1000);
+            return;
+        }
+
+        const savedUser = JSON.parse(localStorage.getItem("user"));
         if (
             savedUser &&
             loginName === savedUser.name &&
@@ -30,7 +82,7 @@ export const Login = () => {
         ) {
             setLoginError("");
             Swal.fire({
-                title: "Muavffaqiyatli!",
+                title: "Muvaffaqiyatli!",
                 icon: "success",
                 timer: 1000,
                 showConfirmButton: false,
@@ -46,12 +98,11 @@ export const Login = () => {
         } else {
             Swal.fire({
                 icon: "error",
-                title: "Nimadir hato ketdi",
+                title: "Nimadir xato ketdi",
                 text: "Login yoki parol noto‘g‘ri!",
             });
         }
     };
-
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -75,7 +126,7 @@ export const Login = () => {
             name: regUsername,
             email: regEmail,
             password: regPassword,
-            role: regRole
+            role: regRole,
         };
 
         localStorage.setItem("user", JSON.stringify(newUser));
@@ -151,6 +202,7 @@ export const Login = () => {
                                 onChange={(e) => setRegRole(e.target.value)}
                                 required
                             >
+                                <option value="">-- Select Role --</option>
                                 <option value="developer">Developer</option>
                                 <option value="admin">Admin</option>
                                 <option value="director">Director</option>
