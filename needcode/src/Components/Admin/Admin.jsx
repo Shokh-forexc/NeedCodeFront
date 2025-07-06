@@ -9,7 +9,7 @@ const Admin = () => {
             textAlign:'center',
             display:'flex',
             justifyContent:'center'}}>
-                Admin
+                
         </div>
     );
 };
